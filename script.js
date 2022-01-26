@@ -8,43 +8,40 @@ setInterval(function () {
 
 //Set colour of timeblocks
 const timeNow = moment();
-const currentHour = $(".current-hour");
+let currentHour = $("#current-hour");
 const textarea = $("<textarea>");
-const times = [];
-
-for (let index = 0; index < currentHour.length; index++) {
-  times.push(currentHour[index].dataset.hour);
-}
+const times = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+currentHour = times;
 
 function backgroundColour() {
   for (let index = 0; index < currentHour.length; index++) {
-    if (times < Number(timeNow.format("H"))) {
-      textarea.addClass("past");
+    const hour = Number(times[index]);
+    const currentHour = timeNow.format("H");
+    if (hour < Number(currentHour)) {
+      $(`#${hour}-text`).addClass("past");
+  
     }
-    if (
-      times >= Number(timeNow.format("H")) &&
-      times <= Number(timeNow.format("H") + 1)
-    ) {
-      textarea.addClass("present");
+    if (hour >= Number(currentHour) && hour <= Number(currentHour + 1)) {
+      $(`#${hour}-text`).addClass("present");
     }
-    if (times > Number(timeNow.format("H"))) {
-      textarea.addClass("future");
+    if (hour > Number(currentHour)) {
+      $(`#${hour}-text`).addClass("future");
     }
   }
 }
 
 backgroundColour();
 
-// $(document).on("click", ".save-button", function (event) {
-//   var taskText = $(this).parent().siblings(".col-8").children("textarea").val();
-//   var taskTime = $(this).parent().siblings(".col-1.5").data("hour");
-//   localStorage.setItem(taskTime, taskText);
-// });
+$(document).on("click", ".save-button", function (event) {
+  var taskText = $(this).parent().siblings(".col-8").children("textarea").val();
+  var taskTime = $(this).parent().siblings(".col-1.5").data("hour");
+  localStorage.setItem(taskTime, taskText);
+});
 
-// $(".row").each(function () {
-//   var timeBlock = $(this).children(".col-2").data("hour");
-//   const existingEvent = localStorage.getItem(timeBlock);
-//   if (existingEvent) {
-//     $(this).find("textarea").val(existingEvent);
-//   }
-// });
+$(".row").each(function () {
+  var timeBlock = $(this).children(".col-2").data("hour");
+  const existingEvent = localStorage.getItem(timeBlock);
+  if (existingEvent) {
+    $(this).find("textarea").val(existingEvent);
+  }
+});

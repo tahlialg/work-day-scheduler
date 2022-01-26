@@ -1,20 +1,36 @@
-const timer =$("#currentDay");
+//Display current date and time
+const timeElement = $("#currentDay");
+timeElement.text(moment().format("DD-MM-YYYY HH:mm:ss"));
 
-//when the pages loads
-
-//show the timer
-setInterval(function(){
-    timer.text(moment().format("DD-MM-YYYY HH:mm:ss"));
+setInterval(function () {
+  timeElement.text(moment().format("DD-MM-YYYY HH:mm:ss"));
 }, 1000);
 
-function createRow(time) {
-    const row = $("<div>").attr("class", "row");
+//Set colour of timeblocks
+const timeNow = moment();
+const currentHour = $("#current-hour");
+const textarea = $("<textarea>");
+const times = [];
 
-    const timeCol = $("<article>").attr("class", "col-2");
-    const timeSpan = $("<span>").text(time + ":00");
-    timeCol.append(timeSpan);
-
-    row.append(timeCol);
-
-    const textareaCol = $("<article>").attr("class", "col-8");
+for (let index = 0; index < currentHour.length; index++) {
+  times.push(currentHour[i].dataset.hour);
 }
+
+function backgroundColour() {
+  for (let index = 0; index < currentHour.length; index++) {
+    if (times < Number(timeNow.format("H"))) {
+      textarea.addClass("past");
+    }
+    if (
+      times >= Number(timeNow.format("H")) &&
+      times <= Number(timeNow.format("H") + 1)
+    ) {
+      textarea.addClass("present");
+    }
+    if (times > Number(timeNow.format("H"))) {
+      textarea.addClass("future");
+    }
+  }
+}
+
+backgroundColour();

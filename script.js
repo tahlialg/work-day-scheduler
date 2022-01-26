@@ -13,7 +13,7 @@ const textarea = $("<textarea>");
 const times = [];
 
 for (let index = 0; index < currentHour.length; index++) {
-  times.push(currentHour[i].dataset.hour);
+  times.push(currentHour[index].dataset.hour);
 }
 
 function backgroundColour() {

@@ -9,7 +9,7 @@ An application that allows an employee with a busy schedule to save important ev
 - Timeblocks are colour-coded to display whether time is in the past, present or future.
 - Save button is clicked to save the event in local storage.
 - User returns to find event is still visible, even after page is refreshed.
-- Clear All button removes saved items from local storage.
+- Clear All button is clicked to remove saved items from local storage.
 
 ## Git Hub Repository
 The link takes you to the repository where the portfolio is hosted.

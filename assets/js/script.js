@@ -1,4 +1,4 @@
-//Display current date and time
+//Displays current date and time
 const timeElement = $("#currentDay");
 timeElement.text(moment().format("DD-MM-YYYY HH:mm:ss"));
 
@@ -6,7 +6,7 @@ setInterval(function () {
   timeElement.text(moment().format("DD-MM-YYYY HH:mm:ss"));
 }, 1000);
 
-//Set colour of timeblocks
+//Sets colour of timeblocks
 const timeNow = moment();
 let currentHour = $("#current-hour");
 const textarea = $("<textarea>");
@@ -31,6 +31,7 @@ function backgroundColour() {
 
 backgroundColour();
 
+//Save button is clicked to save the event in local storage
 $(document).on("click", ".save-button", function (event) {
   var hour = event.target.getAttribute("data-hour");
   var data = $(`#${hour}-text`).val();
@@ -42,6 +43,7 @@ for (let index = 9; index < 18; index++) {
   $(`#${index}-text`).val(data);
 }
 
+//Clear All button is clicked to remove saved items from local storage
 $(".btn-danger").on("click", function () {
   localStorage.clear();
   location.reload();

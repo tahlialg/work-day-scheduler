@@ -63,6 +63,18 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 15px;
+}
+
+.btn {
+  border: solid black 3px;
+  border-radius: 5px;
+}
+
 .past {
   background-color: #d3d3d3;
   color: black;

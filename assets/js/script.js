@@ -19,7 +19,6 @@ function backgroundColour() {
     const currentHour = timeNow.format("H");
     if (hour < Number(currentHour)) {
       $(`#${hour}-text`).addClass("past");
-  
     }
     if (hour >= Number(currentHour) && hour <= Number(currentHour + 1)) {
       $(`#${hour}-text`).addClass("present");
@@ -33,15 +32,17 @@ function backgroundColour() {
 backgroundColour();
 
 $(document).on("click", ".save-button", function (event) {
-  var taskText = $(this).parent().siblings(".col-8").children("textarea").val();
-  var taskTime = $(this).parent().siblings(".col-1.5").data("hour");
-  localStorage.setItem(taskTime, taskText);
+  var hour = event.target.getAttribute("data-hour");
+  var data = $(`#${hour}-text`).val();
+  localStorage.setItem(hour, data);
 });
 
-$(".row").each(function () {
-  var timeBlock = $(this).children(".col-2").data("hour");
-  const existingEvent = localStorage.getItem(timeBlock);
-  if (existingEvent) {
-    $(this).find("textarea").val(existingEvent);
-  }
+for (let index = 9; index < 18; index++) {
+  const data = localStorage.getItem(index);
+  $(`#${index}-text`).val(data);
+}
+
+$(".btn-danger").on("click", function () {
+  localStorage.clear();
+  location.reload();
 });

@@ -8,7 +8,7 @@ setInterval(function () {
 
 //Set colour of timeblocks
 const timeNow = moment();
-const currentHour = $("#current-hour");
+const currentHour = $(".current-hour");
 const textarea = $("<textarea>");
 const times = [];
 
@@ -34,3 +34,17 @@ function backgroundColour() {
 }
 
 backgroundColour();
+
+// $(document).on("click", ".save-button", function (event) {
+//   var taskText = $(this).parent().siblings(".col-8").children("textarea").val();
+//   var taskTime = $(this).parent().siblings(".col-1.5").data("hour");
+//   localStorage.setItem(taskTime, taskText);
+// });
+
+// $(".row").each(function () {
+//   var timeBlock = $(this).children(".col-2").data("hour");
+//   const existingEvent = localStorage.getItem(timeBlock);
+//   if (existingEvent) {
+//     $(this).find("textarea").val(existingEvent);
+//   }
+// });
